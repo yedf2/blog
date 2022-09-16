@@ -10,12 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_16_015713) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_16_022050) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "museums", force: :cascade do |t|
+    t.string "name"
+    t.string "city"
+    t.string "state"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trip_museums", force: :cascade do |t|
+    t.integer "trip_id", null: false
+    t.integer "museum_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["museum_id"], name: "index_trip_museums_on_museum_id"
+    t.index ["trip_id"], name: "index_trip_museums_on_trip_id"
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name"
+    t.date "date"
+    t.integer "multi_city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_trips_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -25,4 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_015713) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "trip_museums", "museums"
+  add_foreign_key "trip_museums", "trips"
+  add_foreign_key "trips", "users"
 end

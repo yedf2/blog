@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  name: MyString
+  date: 2022-09-16
+  multi_city: 1
+
+two:
+  user: two
+  name: MyString
+  date: 2022-09-16
+  multi_city: 1
