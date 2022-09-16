@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     @user.save
-    redirect_to '/trips/index'
+    redirect_to '/trips'
   end
 
   private

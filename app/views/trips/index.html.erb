@@ -1,0 +1,17 @@
+<a href="/trips/new">New Trip</a>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% @trips.each do |trip| %>
+    <tr>
+      <td><%= trip.name %></td>
+      <td><%= trip.date %></td>
+      <td><%= link_to 'Show', trip_path(trip) %></td>
+      <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
+    </tr>
+  <% end %>
+</table>
