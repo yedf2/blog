@@ -3,11 +3,11 @@
 one:
   user: one
   name: MyString
-  date: 2022-09-16
+  date: MyString
   multi_city: 1
 
 two:
   user: two
   name: MyString
-  date: 2022-09-16
+  date: MyString
   multi_city: 1

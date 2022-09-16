@@ -1,3 +1,9 @@
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
 <%= form_for :trip, url: trips_path do |f| %>
   <p>
     <%= f.label :name %><br>
