@@ -5,14 +5,13 @@ class TripsController < ApplicationController
     @trips = Trip.where(user_id: @user_id)
   end
   def new
+    @museums = Museum.all
   end
   def create
     @trip = Trip.new(trip_params)
     @trip.user_id = @user_id
     n = Time.now.strftime("%Y-%m-%d")
     regex = /\d{4}-\d{2}-\d{2}/
-    puts 'trip.date is'
-    puts @trip.date
     if @trip.date !~ regex || @trip.date < n
       redirect_to '/trips/new', alert: 'bad date format should be like "2001-05-15"'
       return
