@@ -1,0 +1,23 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>City</th>
+    <th>State</th>
+    <th>OP</th>
+  </tr>
+
+  <% @museums.each do |museum| %>
+    <tr>
+      <td><%= museum[:name] %></td>
+      <td><%= museum[:city] %></td>
+      <td><%= museum[:state] %></td>
+      <td>
+      <% if museum[:selected] %>
+        <%= link_to 'Delete', '/trips/trip_museum_toggle?op=del&mid='+museum[:id].to_s+'&tid='+@trip.id.to_s %>
+      <% else %>
+        <%= link_to 'Add', '/trips/trip_museum_toggle?op=add&mid='+museum[:id].to_s+'&tid='+@trip.id.to_s %>
+      <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

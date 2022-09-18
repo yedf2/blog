@@ -16,7 +16,7 @@
   </p>
   <% @museums.each do |museum| %>
     <p>
-      <%= check_box_tag(museum.id) %>
+      <%= check_box_tag("museum["+museum.id.to_s+"]") %>
       <%= museum.name %>
     </p>
   <% end %>

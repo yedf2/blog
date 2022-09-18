@@ -1,0 +1,36 @@
+<p>
+  <strong>Name:</strong>
+  <%= @trip.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @trip.date %>
+</p>
+
+<p>
+<%= link_to 'Delete', '/trips/trip_delete?id='+@trip.id.to_s %>
+</p>
+
+<p>
+<%= link_to 'Add Museum', '/trips/museums?id='+@trip.id.to_s %>
+</p>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>City</th>
+    <th>State</th>
+    <th>OP</th>
+  </tr>
+
+  <% @museums.each do |museum| %>
+    <tr>
+      <td><%= museum.name %></td>
+      <td><%= museum.city %></td>
+      <td><%= museum.state %></td>
+      <td><%= link_to 'Delete', '/trips/trip_museum_delete?mid='+museum.id.to_s+'&tid='+@trip.id.to_s %></td>
+    </tr>
+  <% end %>
+</table>
+
