@@ -1,8 +1,17 @@
 <a href="/trips/new">New Trip</a>
+<style type="text/css">
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+
+<div> <span><%= link_to 'DayTrip', '/trips' %></span>&nbsp; &nbsp;<span><%= link_to 'MutipleDayTrip', '/trips?multi=1' %></span></div>
 <table>
   <tr>
     <th>name</th>
     <th>date</th>
+    <th>type</th>
     <th colspan="2"></th>
   </tr>
 
@@ -10,8 +19,8 @@
     <tr>
       <td><%= trip.name %></td>
       <td><%= trip.date %></td>
+      <td><%= trip.multi_city == 1 ? 'Multiple Day Trip' : 'Day Trip' %>
       <td><%= link_to 'Show', trip_path(trip) %></td>
-      <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
     </tr>
   <% end %>
 </table>

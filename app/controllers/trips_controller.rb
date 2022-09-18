@@ -2,10 +2,13 @@ class TripsController < ApplicationController
   before_action :authenticate
 
   def index
-    @trips = Trip.where(user_id: @user_id)
+    @trips = Trip.where({
+      'user_id': @user_id,
+      'multi_city': params['multi'] == "1" ? 1 : 0,
+      })
   end
   def new
-    @museums = Museum.all().slice(0, 7)
+    @museums = Museum.all()
   end
   def create
     params.permit!
@@ -27,7 +30,7 @@ class TripsController < ApplicationController
 
     ks = pm.keys
     cities = Museum.where(id: ks).select('city').uniq
-    @trip.multi_city = ks.size > 2 or cities.size >= 2 ? 1 : 0
+    @trip.multi_city = cities.size >= 2 ? 1 : 0
 
     @trip.save
     ks.each do |m|
@@ -67,8 +70,10 @@ class TripsController < ApplicationController
   def trip_museum_toggle
     if params['op'] == 'del'
       TripMuseum.where({'trip_id': params['tid'], 'museum_id': params['mid']}).destroy_all
+      update_multi(params['tid'])
     else
       TripMuseum.new({'trip_id': params['tid'], 'museum_id': params['mid']}).save
+      update_multi(params['tid'])
     end
     redirect_to '/trips/museums?id='+params['tid']
   end
@@ -81,6 +86,13 @@ class TripsController < ApplicationController
   private
   def report_error(msg)
     redirect_to '/trips/new', alert: msg
+  end
+  def update_multi(tid)
+    ids = TripMuseum.where({'trip_id': tid}).select('museum_id')
+    cities = Museum.where(id: ids).select('city').uniq
+    trip = Trip.find_by_id(tid)
+    trip.multi_city = cities.size >= 2 ? 1 : 0
+    trip.save
   end
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|

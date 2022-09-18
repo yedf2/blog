@@ -9,6 +9,11 @@
 </p>
 
 <p>
+  <strong>Type:</strong>
+  <%= @trip.multi_city == 1 ? 'Multiple Day Trip' : 'Day Trip' %>
+</p>
+
+<p>
 <%= link_to 'Delete', '/trips/trip_delete?id='+@trip.id.to_s %>
 </p>
 

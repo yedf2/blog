@@ -14,13 +14,13 @@
     <%= f.label :date %><br>
     <%= f.text_field :date %>
   </p>
+  <p>
+    <%= f.submit %>
+  </p>
   <% @museums.each do |museum| %>
     <p>
       <%= check_box_tag("museum["+museum.id.to_s+"]") %>
       <%= museum.name %>
     </p>
   <% end %>
-  <p>
-    <%= f.submit %>
-  </p>
 <% end %>
