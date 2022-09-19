@@ -23,8 +23,13 @@ bin/rails db:seed
 bin/rails server
 ```
 
-If you want to crawl the newest museums in `https://www.museumsusa.org/`, you can run `ruby bin/crawl.rb` and then run `bin/rails db:seed`
+If you want to crawl the newest museums in `https://www.museumsusa.org/`, you can run `bin/crawl` and then run `bin/rails db:seed` to load the downloaded museus to database
 
 ## Visit
 
 After the project has been startup, you can now visit by this link [localhost:3000](localhost:3000)
+
+## Files
+- [./db](./db): schema of database, initial data of database, table creating scripts
+- [./bin/crawl](./bin/crawl): Get museums and parse HTML
+- [./app](./app): UI&Controller
