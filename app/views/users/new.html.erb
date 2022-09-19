@@ -1,3 +1,9 @@
+<p>
+If you don't hava a use, you can register one, and then go to the trips list.
+</p>
+<p>
+Or you can go to the <a href="/trips">trips page</a> directly
+</p>
 <%= form_for :user, url: users_path do |f| %>
   <p>
     <%= f.label 'Email' %><br>
@@ -10,6 +16,6 @@
   </p>
 
   <p>
-    <%= f.submit %>
+    <%= f.submit 'Register' %>
   </p>
 <% end %>

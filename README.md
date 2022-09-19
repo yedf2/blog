@@ -17,6 +17,7 @@ docker-compose up -d
 requirement: ruby(>=2.7) has been installed
 ```
 git clone https://github.com/yedf2/blog && cd blog
+bundle install
 bin/rails db:migrate
 bin/rails db:seed
 bin/rails server

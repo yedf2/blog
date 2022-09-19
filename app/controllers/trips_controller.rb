@@ -3,7 +3,7 @@ class TripsController < ApplicationController
 
   def index
     @trips = Trip.where({
-      'user_id': @user_id,
+      'user_id': @user.id,
       'multi_city': params['multi'] == "1" ? 1 : 0,
       })
   end
@@ -13,19 +13,19 @@ class TripsController < ApplicationController
   def create
     params.permit!
     pt = params['trip']
-    if !pt || !pt['name'] || !pt['date']
-      return report_error('you should specify the name and date of the trip')
+    if !pt || !pt['name'] || pt['name']=='' || !pt['date'] || pt['date']==''
+      return report_error('you should specify the name and the date of the trip')
     end
     pm = params['museum']
     if !pm || pm.keys.size == 0
-      return report_error("you should check some museums")
+      return report_error("a trip should have at least one museum")
     end
     @trip = Trip.new(pt)
-    @trip.user_id = @user_id
+    @trip.user_id = @user.id
     n = Time.now.strftime("%Y-%m-%d")
     regex = /\d{4}-\d{2}-\d{2}/
-    if @trip.date !~ regex || @trip.date < n
-      return report_error('bad date format should be like "2001-05-15"')
+    if @trip.date !~ regex || @trip.date <= n
+      return report_error('bad date, should be a future date formated like "2001-05-15"')
     end
 
     ks = pm.keys
@@ -97,8 +97,8 @@ class TripsController < ApplicationController
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
       user = User.find_by_email(username)
-      if user.password == password
-        @user_id = user.id
+      if user && user.password == password
+        @user = user
       end
     end
   end

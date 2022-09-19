@@ -1,9 +1,13 @@
 <% flash.each do |type, msg| %>
-  <div>
+  <div style="color:red">
+    Error:
     <%= msg %>
   </div>
 <% end %>
 
+<p>
+  Current User: <%= @user.email %>
+</p>
 <%= form_for :trip, url: trips_path do |f| %>
   <p>
     <%= f.label :name %><br>

@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   end
 
   # Defines the root path route ("/")
-  root 'welcome#index'
+  root 'users#new'
 end
