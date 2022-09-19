@@ -1,24 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This blog can be access by this link [https://b.dtm.pub](https://b.dtm.pub)
+## Quick Start
 
-Things you may want to cover:
+You can startup this project in two ways:
 
-* Ruby version
+## Using docker-compose
 
-* System dependencies
+requirement: docker & docker-compose have been installed
+```
+git clone https://github.com/yedf2/blog && cd blog
+docker-compose up -d
+```
 
-* Configuration
+## From Source
+requirement: ruby(>=2.7) has been installed
+```
+git clone https://github.com/yedf2/blog && cd blog
+bin/rails db:migrate
+bin/rails db:seed
+bin/rails server
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+After the project has been startup, you can now visit by this link [localhost:3000](localhost:3000)
