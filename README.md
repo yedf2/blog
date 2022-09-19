@@ -23,6 +23,7 @@ bin/rails server
 ```
 
 If you want to crawl the newest museums in `https://www.museumsusa.org/`, you can run `ruby bin/crawl.rb` and then run `bin/rails db:seed`
+
 ## Visit
 
 After the project has been startup, you can now visit by this link [localhost:3000](localhost:3000)
